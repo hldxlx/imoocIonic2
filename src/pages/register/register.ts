@@ -14,9 +14,9 @@ import {RestProvider} from "../../providers/rest/rest";
   templateUrl: 'register.html',
 })
 export class RegisterPage extends BaseUI{
-  mobile:any;
-  nickname:any;
-  password:any;
+  mobile:string;
+  nickname:string;
+  password:string;
   confirmPassword:any;
   errorMessage:any;
   constructor(public navCtrl: NavController,
@@ -39,8 +39,18 @@ export class RegisterPage extends BaseUI{
     this.navCtrl.pop();//nav导航的子页面返回
   }
   doRegister(){
-    if(this.password != this.confirmPassword){
-      super.showToast(this.toastCtrl,"两次输入的密码不匹配");
+    //前台验证表单数据的正确性，包括手机号码、昵称的长度、密码的长度
+    //验证国内手机号码的格式，考虑所有的当前手机号码的可能性
+    if (!(/^1[34578]\d{9}$/.test(this.mobile))) {
+      //后台进行大数据的保存
+      super.showToast(this.toastCtrl,"您的手机号码格式不正确。");
+    }else if (this.nickname.length < 3 || this.nickname.length > 10) {
+      super.showToast(this.toastCtrl, "昵称的长度应该在 3 ~ 10 位之间。");
+    } else if (this.password.length < 6 || this.password.length > 20
+      || this.confirmPassword.length < 6 || this.confirmPassword.length > 20) {
+      super.showToast(this.toastCtrl, "密码的长度应该在 6 ~ 20 位之间。");
+    } else if (this.password != this.confirmPassword) {
+      super.showToast(this.toastCtrl, "两次输入的密码不匹配。");
     }else{
       var loading = super.showLoading(this.loadingCtrl,"注册中...");
       this.rest.register(this.mobile,this.nickname,this.password)

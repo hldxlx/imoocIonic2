@@ -41,6 +41,14 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlLogin + "?mobile=" + mobile + "&password=" + password);
   }
 
+  getUserInfo(userId):Observable<string[]>{
+    return this.getUrlReturn(this.apiUrlUserInfo + "?userid=" + userId);
+  }
+
+  updateNickName(userId, nickname): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlUpdateNickName + "?userid=" + userId + "&nickname=" + nickname);
+  }
+
   //注册请求
   register(mobile,nickname,password):Observable<string[]>{
     return this.getUrlReturn(this.apiUrlRegister + "?mobile=" + mobile + "&nickname=" + nickname + "&password=" + password);
@@ -59,6 +67,7 @@ export class RestProvider {
       .map(this.extractData)
       .catch(this.handleError);
   }
+
 
   //处理接口返回的数据，处理成json格式
   private extractData(res: Response) {

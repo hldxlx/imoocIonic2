@@ -25,10 +25,14 @@
   </div>
 
   <div *ngIf="logined">
-    <ion-card>
-      <ion-card-header text-center>
-        已登录
-      </ion-card-header>
-    </ion-card>
+    <ion-list class="marginTop">
+      <button ion-item (click)="gotoUserPage()">
+        <ion-avatar item-start="">
+          <img src="{{headface}}"/>
+        </ion-avatar>
+        <h2>{{userinfo.UserNickName}}</h2>
+        <p>查看主页</p>
+      </button>
+    </ion-list>
   </div>
 </ion-content>

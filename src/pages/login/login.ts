@@ -47,7 +47,7 @@ export class LoginPage extends BaseUI{
             //你也可以存储接口返回的 token
             this.storage.set('UserId',f["UserId"]);
             loading.dismiss();
-            this.dismiss();
+            this.dismiss();//关闭当前（登录）页面
           }else{
             loading.dismiss();
             super.showToast(this.toastCtrl,f["StatusContent"]);

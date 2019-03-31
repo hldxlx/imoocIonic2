@@ -10,7 +10,7 @@ import { NotificationPage } from '../pages/notification/notification';
 import { MorePage } from '../pages/more/more';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-
+import { UserPage } from '../pages/user/user';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,7 +27,8 @@ import {IonicStorageModule} from '@ionic/storage';
     MorePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    UserPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import {IonicStorageModule} from '@ionic/storage';
     MorePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    UserPage
   ],
   providers: [
     StatusBar,
